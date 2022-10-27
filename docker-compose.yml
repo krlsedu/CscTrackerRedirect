@@ -6,11 +6,11 @@ networks:
 
 services:
   csctracker:
-    container_name: datasource
-    hostname: datasource
-    image: krlsedu/csctracker-invest
+    container_name: redirect
+    hostname: redirect
+    image: krlsedu/csctracker-redirect
     restart: always
     networks:
       - backend
     ports:
-      - "5050:5000"
+      - "5000:5000"

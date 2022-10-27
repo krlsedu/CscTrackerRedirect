@@ -6,7 +6,7 @@ pipeline {
     stage('Docker image') {
       agent any
       steps {
-        sh 'docker build -t krlsedu/csctracker-invest:latest .'
+        sh 'docker build -t krlsedu/csctracker-redirect:latest .'
       }
     }
     stage('Docker Push') {
@@ -14,7 +14,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push krlsedu/csctracker-invest'
+          sh 'docker push krlsedu/csctracker-redirect'
         }
       }
     }
