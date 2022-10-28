@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  csctracker:
+  redirect:
     container_name: redirect
     hostname: redirect
     image: krlsedu/csctracker-redirect
