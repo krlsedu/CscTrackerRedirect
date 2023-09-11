@@ -12,5 +12,3 @@ services:
     restart: always
     networks:
       - backend
-    ports:
-      - "5000:5000"
