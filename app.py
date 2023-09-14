@@ -39,7 +39,7 @@ def redirectGet1(service, port, part1):
     args = request.args
     headers = request.headers
     body = {}
-    response = requests.get(f"http://{service}:{port}/{part1}", headers=headers, json=body, params=args)
+    response = requests.get(f"http://{service}:{port}/{part1}", headers=headers, json=body)
     return response.text
 
 
@@ -58,7 +58,7 @@ def redirectGet2(service, port, part1, part2):
     args = request.args
     headers = request.headers
     body = {}
-    response = requests.get(f"http://{service}:{port}/{part1}/{part2}", headers=headers, json=body, params=args)
+    response = requests.get(f"http://{service}:{port}/{part1}/{part2}", headers=headers, json=body)
     return response.text
 
 
@@ -77,7 +77,8 @@ def redirectGet3(service, port, part1, part2, part3):
     args = request.args
     headers = request.headers
     body = {}
-    response = requests.get(f"http://{service}:{port}/{part1}/{part2}/{part3}", headers=headers, json=body, params=args)
+    url = f"http://{service}:{port}/{part1}/{part2}/{part3}"
+    response = requests.get(url, headers=headers, json=body)
     return response.text
 
 
