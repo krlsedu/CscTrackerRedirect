@@ -44,7 +44,6 @@ def redirectGet1(service, port, part1):
     ##print if url contains federated
     if part1.find("federate") != -1:
         print(response.text)
-    print(response.text)
     return response.text
 
 
