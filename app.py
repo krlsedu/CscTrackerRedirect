@@ -1,13 +1,13 @@
-import json
 import os
-
-from flask import request
 
 import requests as requests
 from flask import Flask
+from flask import request
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
 
+metrics = PrometheusMetrics(app, group_by='endpoint', default_labels={'application': 'CscTrackerRedirect'})
 url_repository = 'https://backend.csctracker.com/'
 
 
@@ -68,7 +68,8 @@ def redirect3(service, port, part1, part2, part3):  # put application's code her
     args = request.args
     headers = request.headers
     body = request.get_json()
-    response = requests.post(f"http://{service}:{port}/{part1}/{part2}/{part3}", headers=headers, json=body, params=args)
+    response = requests.post(f"http://{service}:{port}/{part1}/{part2}/{part3}", headers=headers, json=body,
+                             params=args)
     return response.text
 
 
