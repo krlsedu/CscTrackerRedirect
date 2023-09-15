@@ -79,9 +79,8 @@ def redirect3(service, port, part1, part2, part3):  # put application's code her
 
 @app.route('/<service>/<port>/<part1>/<part2>/<part3>', methods=['GET'])
 def redirectGet3(service, port, part1, part2, part3):
-    args = request.args
     headers = request.headers
-    body = {}
+    body = None
     url = f"http://{service}:{port}/{part1}/{part2}/{part3}"
     response = requests.get(url, headers=headers, json=body)
     return response.text
