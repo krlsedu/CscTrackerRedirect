@@ -40,10 +40,7 @@ def redirectGet1(service, port, part1):
     args = request.args
     headers = request.headers
     body = {}
-    response = requests.get(f"http://{service}:{port}/{part1}", headers=headers, json=body)
-    ##print if url contains federated
-    if part1.find("federate") != -1:
-        print(response.text)
+    response = requests.get(f"http://{service}:{port}/{part1}", headers=headers, json=body, params=args)
     return response.text
 
 
@@ -62,7 +59,7 @@ def redirectGet2(service, port, part1, part2):
     args = request.args
     headers = request.headers
     body = {}
-    response = requests.get(f"http://{service}:{port}/{part1}/{part2}", headers=headers, json=body)
+    response = requests.get(f"http://{service}:{port}/{part1}/{part2}", headers=headers, json=body, params=args)
     return response.text
 
 
@@ -79,10 +76,11 @@ def redirect3(service, port, part1, part2, part3):  # put application's code her
 
 @app.route('/<service>/<port>/<part1>/<part2>/<part3>', methods=['GET'])
 def redirectGet3(service, port, part1, part2, part3):
+    args = request.args
     headers = request.headers
     body = None
     url = f"http://{service}:{port}/{part1}/{part2}/{part3}"
-    response = requests.get(url, headers=headers, json=body)
+    response = requests.get(url, headers=headers, json=body, params=args)
     return response.text
 
 
