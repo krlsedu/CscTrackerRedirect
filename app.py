@@ -17,7 +17,10 @@ def consumo():  # put application's code here
 
     args = http_repository.get_args()
     body = {}
-    response = http_repository.post(f"{backend_url}monitor-consumo/consumo", headers=headers, json=body, args=args)
+    response = http_repository.post(f"{backend_url}monitor-consumo/consumo",
+                                    headers=headers,
+                                    body=body,
+                                    args=args)
     return "ok", 200, {'Content-Type': 'application/x-www-form-urlencoded'}
 
 
@@ -27,7 +30,10 @@ def redirect1(service, port, part1):  # put application's code here
     args = http_repository.get_args()
     headers = http_repository.get_headers()
     body = http_repository.get_json_body()
-    response = http_repository.post(f"http://{service}:{port}/{part1}", headers=headers, json=body, args=args)
+    response = http_repository.post(f"http://{service}:{port}/{part1}",
+                                    headers=headers,
+                                    body=body,
+                                    args=args)
     print(response.text)
     return response, response.status_code, {'Content-Type': 'application/json'}
 
@@ -45,7 +51,10 @@ def redirect2(service, port, part1, part2):
     args = http_repository.get_args()
     headers = http_repository.get_headers()
     body = http_repository.get_json_body()
-    response = http_repository.post(f"http://{service}:{port}/{part1}/{part2}", headers=headers, json=body, args=args)
+    response = http_repository.post(f"http://{service}:{port}/{part1}/{part2}",
+                                    headers=headers,
+                                    body=body,
+                                    args=args)
     return response.text
 
 
@@ -62,7 +71,9 @@ def redirect3(service, port, part1, part2, part3):
     args = http_repository.get_args()
     headers = http_repository.get_headers()
     body = http_repository.get_json_body()
-    response = http_repository.post(f"http://{service}:{port}/{part1}/{part2}/{part3}", headers=headers, json=body,
+    response = http_repository.post(f"http://{service}:{port}/{part1}/{part2}/{part3}",
+                                    headers=headers,
+                                    body=body,
                                     args=args)
     return response.text
 
