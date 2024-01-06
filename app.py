@@ -15,7 +15,7 @@ def consumo():  # put application's code here
         'Authorization': "Bearer " + os.environ['TOKEN_INTEGRACAO']
     }
 
-    args = http_repository.get_args().args
+    args = http_repository.get_args()
     body = {}
     response = http_repository.post(f"{backend_url}monitor-consumo/consumo", headers=headers, json=body, args=args)
     return "ok", 200, {'Content-Type': 'application/x-www-form-urlencoded'}
