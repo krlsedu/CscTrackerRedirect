@@ -5,6 +5,7 @@ from csctracker_py_core.starter import Starter
 starter = Starter()
 app = starter.get_app()
 http_repository = starter.get_http_repository()
+
 backend_url = 'https://backend.csctracker.com/'
 
 
