@@ -25,13 +25,13 @@ def consumo():  # put application's code here
     return "ok", 200, {'Content-Type': 'application/x-www-form-urlencoded'}
 
 
-@app.route('/<service>/<port>/<part1>', methods=['POST'])
-def redirect1(service, port, part1):  # put application's code here
+@app.route('/<service>/<port>/<path:parts>', methods=['POST'])
+def redirect_post(service, port, parts):  # put application's code here
 
     args = http_repository.get_args()
     headers = http_repository.get_headers()
     body = http_repository.get_json_body()
-    response = http_repository.post(f"http://{service}:{port}/{part1}",
+    response = http_repository.post(f"http://{service}:{port}/{parts}",
                                     headers=headers,
                                     body=body,
                                     args=args)
@@ -39,52 +39,11 @@ def redirect1(service, port, part1):  # put application's code here
     return response, response.status_code, {'Content-Type': 'application/json'}
 
 
-@app.route('/<service>/<port>/<part1>', methods=['GET'])
-def redirectGet1(service, port, part1):
+@app.route('/<service>/<port>/<path:parts>', methods=['GET'])
+def redirect_get(service, port, parts):
     args = http_repository.get_args()
     headers = http_repository.get_headers()
-    response = http_repository.get(f"http://{service}:{port}/{part1}", headers=headers, params=args)
-    return response.text
-
-
-@app.route('/<service>/<port>/<part1>/<part2>', methods=['POST'])
-def redirect2(service, port, part1, part2):
-    args = http_repository.get_args()
-    headers = http_repository.get_headers()
-    body = http_repository.get_json_body()
-    response = http_repository.post(f"http://{service}:{port}/{part1}/{part2}",
-                                    headers=headers,
-                                    body=body,
-                                    args=args)
-    return response.text
-
-
-@app.route('/<service>/<port>/<part1>/<part2>', methods=['GET'])
-def redirectGet2(service, port, part1, part2):
-    args = http_repository.get_args()
-    headers = http_repository.get_headers()
-    response = http_repository.get(f"http://{service}:{port}/{part1}/{part2}", headers=headers, params=args)
-    return response.text
-
-
-@app.route('/<service>/<port>/<part1>/<part2>/<part3>', methods=['POST'])
-def redirect3(service, port, part1, part2, part3):
-    args = http_repository.get_args()
-    headers = http_repository.get_headers()
-    body = http_repository.get_json_body()
-    response = http_repository.post(f"http://{service}:{port}/{part1}/{part2}/{part3}",
-                                    headers=headers,
-                                    body=body,
-                                    args=args)
-    return response.text
-
-
-@app.route('/<service>/<port>/<part1>/<part2>/<part3>', methods=['GET'])
-def redirectGet3(service, port, part1, part2, part3):
-    args = http_repository.get_args()
-    headers = http_repository.get_headers()
-    url = f"http://{service}:{port}/{part1}/{part2}/{part3}"
-    response = http_repository.get(url, headers=headers, params=args)
+    response = http_repository.get(f"http://{service}:{port}/{parts}", headers=headers, params=args)
     return response.text
 
 
