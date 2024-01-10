@@ -1,4 +1,5 @@
 import os
+import threading
 
 from csctracker_py_core.starter import Starter
 
@@ -11,10 +12,16 @@ backend_url = 'https://backend.csctracker.com/'
 
 @app.route('/api/v1/consumo', methods=['POST'])
 def consumo():  # put application's code here
-
-    headers = {
-        'Authorization': "Bearer " + os.environ['TOKEN_INTEGRACAO']
-    }
+    try:
+        thread = threading.current_thread()
+        headers = {
+            'Authorization': "Bearer " + os.environ['TOKEN_INTEGRACAO'],
+            'x-correlation-id': thread.__getattribute__('correlation_id')
+        }
+    except:
+        headers = {
+            'Authorization': "Bearer " + os.environ['TOKEN_INTEGRACAO']
+        }
 
     args = http_repository.get_args()
     body = {}
