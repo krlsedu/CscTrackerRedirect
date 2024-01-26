@@ -42,7 +42,7 @@ def redirect_post(service, port, parts):  # put application's code here
                                     body=body,
                                     args=args)
     print(response.text)
-    return response, response.status_code, {'Content-Type': 'application/json'}
+    return response.text, response.status_code, {'Content-Type': 'application/json'}
 
 
 @app.route('/<service>/<port>/<path:parts>', methods=['GET'])
