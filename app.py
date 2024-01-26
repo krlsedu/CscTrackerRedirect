@@ -1,3 +1,4 @@
+import logging
 import os
 
 from csctracker_py_core.starter import Starter
@@ -41,7 +42,7 @@ def redirect_post(service, port, parts):  # put application's code here
                                     headers=headers,
                                     body=body,
                                     args=args)
-    print(response.text)
+    logging.getLogger().info(response.text)
     return response.text, response.status_code, {'Content-Type': 'application/json'}
 
 
