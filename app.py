@@ -1,31 +1,30 @@
 import logging
-import os
 
+from csctracker_py_core.models.emuns.config import Config
 from csctracker_py_core.starter import Starter
+from csctracker_py_core.utils.configs import Configs
 from csctracker_py_core.utils.interceptor import g
 
 starter = Starter()
 app = starter.get_app()
 http_repository = starter.get_http_repository()
 
-backend_url = 'https://backend.csctracker.com/'
-
 
 @app.route('/api/v1/consumo', methods=['POST'])
 def consumo():  # put application's code here
     try:
         headers = {
-            'Authorization': "Bearer " + os.environ['TOKEN_INTEGRACAO'],
+            'Authorization': "Bearer " + Configs.get_env_variable(Config.API_TOKEN),
             'x-correlation-id': g.correlation_id
         }
     except:
         headers = {
-            'Authorization': "Bearer " + os.environ['TOKEN_INTEGRACAO']
+            'Authorization': "Bearer " + Configs.get_env_variable(Config.API_TOKEN),
         }
 
     args = http_repository.get_args()
     body = {}
-    response = http_repository.post(f"{backend_url}monitor-consumo/consumo",
+    response = http_repository.post(f"{Configs.get_env_variable(Config.URL_BFF)}monitor-consumo/consumo",
                                     headers=headers,
                                     body=body,
                                     args=args)
