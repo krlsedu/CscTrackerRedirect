@@ -1,7 +1,7 @@
 #!groovy
 env.RELEASE_COMMIT = "1";
 env.VERSION_NAME = "";
-env.SERVICE_NAME = "csctracker_services_redirect"
+env.SERVICE_NAME = "csctracker_redirect"
 env.IMAGE_NAME = "csctracker-redirect"
 env.REPOSITORY_NAME = "CscTrackerRedirect"
 
