@@ -17,7 +17,8 @@ def simfrete():
     cnpj = request.args.get('cnpj')
     dest = request.args.get('dest')
     notafiscal = request.args.get('notafiscal')
-    url_ = f"https://frigelar.simfrete.com/consultaocorrv2.jsp?cnpj={cnpj}&dest={dest}&notafiscal={notafiscal}"
+    version = request.args.get('version')
+    url_ = f"https://frigelar.simfrete.com/consultaocorrv{version}.jsp?cnpj={cnpj}&dest={dest}&notafiscal={notafiscal}"
     logging.getLogger().info(url_)
     result = requests.get(url_)
     logging.getLogger().info(result.status_code)
