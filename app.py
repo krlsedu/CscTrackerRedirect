@@ -7,7 +7,7 @@ from csctracker_py_core.utils.configs import Configs
 from csctracker_py_core.utils.interceptor import g
 from flask import request
 
-starter = Starter()
+starter = Starter(save_request=True)
 app = starter.get_app()
 http_repository = starter.get_http_repository()
 
