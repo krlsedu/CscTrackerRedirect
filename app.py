@@ -1,14 +1,26 @@
 import logging
 
+import requests
 from csctracker_py_core.models.emuns.config import Config
 from csctracker_py_core.starter import Starter
 from csctracker_py_core.utils.configs import Configs
 from csctracker_py_core.utils.interceptor import g
+from flask import request
 
 starter = Starter()
 app = starter.get_app()
 http_repository = starter.get_http_repository()
 
+@app.route('/simfrete', methods=['GET'])
+def simfrete():
+    cnpj = request.args.get('cnpj')
+    dest = request.args.get('dest')
+    notafiscal = request.args.get('notafiscal')
+    url_ = f"https://frigelar.simfrete.com/consultaocorrv2.jsp?cnpj={cnpj}&dest={dest}&notafiscal={notafiscal}"
+    print(url_)
+    result = requests.get(url_)
+    print(result.status_code)
+    return result.text
 
 @app.route('/api/v1/consumo', methods=['POST'])
 def consumo():  # put application's code here
