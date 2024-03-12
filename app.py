@@ -7,7 +7,11 @@ from csctracker_py_core.utils.configs import Configs
 from csctracker_py_core.utils.interceptor import g
 from flask import request
 
-starter = Starter(save_request=True)
+from enums.config_redirect import ConfigRedirect
+
+starter = Starter(
+    save_request=Configs.get_env_variable(ConfigRedirect.SAVE_REQUESTS, default='False').lower() == 'true'
+)
 app = starter.get_app()
 http_repository = starter.get_http_repository()
 
